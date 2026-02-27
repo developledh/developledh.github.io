@@ -30,7 +30,7 @@ jobs:
           sleep 8
 
       - name: Install Python dependencies
-        run: pip install scholarly
+        run: pip install "scholarly[tor]"
 
       - name: Fetch publications from Google Scholar
         env:
