@@ -1,0 +1,43 @@
+name: Update Publications from Google Scholar
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'   # 매주 월요일 오전 6시 (UTC) 자동 실행
+  workflow_dispatch:        # GitHub 웹에서 수동 실행 가능
+
+permissions:
+  contents: write           # 파일 커밋을 위해 필요
+
+jobs:
+  update-publications:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install scholarly
+        run: pip install scholarly
+
+      - name: Fetch publications from Google Scholar
+        env:
+          SCHOLAR_ID: ${{ secrets.SCHOLAR_ID }}
+          AUTHOR_NAME: ${{ secrets.AUTHOR_NAME }}
+        run: python scripts/fetch_publications.py
+
+      - name: Commit updated publications (변경된 경우에만)
+        run: |
+          git config user.name  "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add content/publications/_index.md
+          if git diff --staged --quiet; then
+            echo "변경사항 없음. 커밋 건너뜀."
+          else
+            git commit -m "chore: auto-update publications from Google Scholar [skip ci]"
+            git push
+          fi

@@ -1,0 +1,59 @@
+{{- with site.Params.profileMode }}
+
+{{- if site.Params.bannerEnabled }}
+{{- /* ===== VOGUE COVER MODE: 배너 준비 완료 시 활성화 ===== */}}
+<div class="vogue-cover">
+  <div class="vogue-image-wrap">
+    <img src="/images/banner.jpg" alt="Cover Photo" class="vogue-banner">
+    <div class="vogue-overlay">
+      <div class="vogue-overlay-inner">
+        <h1 class="vogue-name">{{ .title | markdownify }}</h1>
+        <p class="vogue-subtitle">{{ .subtitle | markdownify }}</p>
+        <div class="vogue-social">
+          {{- partial "social_icons.html" (dict) -}}
+        </div>
+        {{- with .buttons }}
+        <div class="vogue-buttons">
+          {{- range . }}
+          <a class="vogue-btn" href="{{ trim .url " " }}" rel="noopener">{{ .name }}</a>
+          {{- end }}
+        </div>
+        {{- end }}
+      </div>
+    </div>
+  </div>
+</div>
+
+{{- else }}
+{{- /* ===== SPLIT MODE: 배너 준비 전 (현재) — Vogue 전환 대비 레이아웃 ===== */}}
+<div class="vogue-split">
+  <div class="vogue-split-photo">
+    {{- if .imageUrl }}
+    <img
+      src="{{ .imageUrl | absURL }}"
+      alt="{{ .imageTitle | default "profile image" }}"
+      class="vogue-profile-img"
+    >
+    {{- end }}
+  </div>
+  <div class="vogue-split-info">
+    <p class="vogue-split-label">RESEARCHER</p>
+    <h1 class="vogue-split-name">{{ .title | markdownify }}</h1>
+    <p class="vogue-split-subtitle">{{ .subtitle | markdownify }}</p>
+    <div class="vogue-split-social">
+      {{- partial "social_icons.html" (dict) -}}
+    </div>
+    {{- with .buttons }}
+    <div class="buttons vogue-split-buttons">
+      {{- range . }}
+      <a class="button" href="{{ trim .url " " }}" rel="noopener" title="{{ .name }}">
+        <span class="button-inner">{{ .name }}</span>
+      </a>
+      {{- end }}
+    </div>
+    {{- end }}
+  </div>
+</div>
+
+{{- end }}
+{{- end }}

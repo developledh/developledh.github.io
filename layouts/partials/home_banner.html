@@ -1,0 +1,38 @@
+{{- /*
+  배너 이미지 섹션 (banner.jpg 준비되면 활성화됨)
+  사용법: static/images/banner.jpg 파일 추가 후 hugo.toml에서
+    [params]
+      bannerEnabled = true
+  설정하면 자동으로 표시됩니다.
+*/ -}}
+
+{{- if and .Site.Params.bannerEnabled (fileExists "static/images/banner.jpg") -}}
+<div class="banner-section">
+  <img
+    src="/images/banner.jpg"
+    alt="Research Banner"
+    class="banner-img"
+    loading="lazy"
+  />
+</div>
+<style>
+  .banner-section {
+    width: 100%;
+    max-height: 320px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+  }
+  .banner-img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  @media (max-width: 768px) {
+    .banner-section { max-height: 180px; }
+    .banner-img { height: 180px; }
+  }
+</style>
+{{- end -}}
