@@ -67,17 +67,11 @@ buildExpired = false
     name = "github"
     url = "https://github.com/developledh"
   [[params.socialIcons]]
-    name = "twitter"
-    url = "https://twitter.com/yourusername"
-  [[params.socialIcons]]
     name = "googlescholar"
-    url = "https://scholar.google.com/citations?user=YOURID"
+    url = "https://scholar.google.com/citations?user=yu7_a7sAAAAJ"
   [[params.socialIcons]]
     name = "email"
     url = "mailto:dongho0724@naver.com"
-  [[params.socialIcons]]
-    name = "linkedin"
-    url = "https://linkedin.com/in/yourusername"
 
   [params.cover]
     hidden = true
