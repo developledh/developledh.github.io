@@ -11,6 +11,7 @@ permissions:
 jobs:
   update-publications:
     runs-on: ubuntu-latest
+    timeout-minutes: 10        # 10분 초과 시 자동 취소
 
     steps:
       - name: Checkout repository
