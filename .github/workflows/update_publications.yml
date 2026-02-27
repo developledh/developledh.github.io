@@ -23,7 +23,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install Python dependencies
-        run: pip install scholarly
+        run: pip install scholarly "httpx<0.28"
 
       - name: Fetch publications from Google Scholar
         env:
