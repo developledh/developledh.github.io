@@ -1,6 +1,6 @@
-baseURL = "https://developledh.github.io/"
+baseURL = "https://iwasborntodothis.co.kr/"
 languageCode = "en-us"
-title = "Your Name | Researcher"
+title = "Dong Ho Lee | Researcher"
 theme = "PaperMod"
 paginate = 5
 
@@ -15,10 +15,10 @@ buildExpired = false
 
 [params]
   env = "production"
-  title = "Your Name"
-  description = "PhD Student / Researcher at [University]"
-  keywords = ["research", "machine learning", "your field"]
-  author = "Your Name"
+  title = "Dong Ho Lee"
+  description = "M.S-PhD Integrated Student / Researcher at Chungbuk National University"
+  keywords = ["Computational material science", "metal-halide", "Multiscale modeling"]
+  author = "Dong Ho Lee"
   images = ["/images/profile.jpg"]
   DateFormat = "January 2, 2006"
   defaultTheme = "auto"
@@ -47,8 +47,8 @@ buildExpired = false
 
   [params.profileMode]
     enabled = true
-    title = "Your Name (이름)"
-    subtitle = "PhD Student in Computer Science @ [Your University]  \nResearch interests: Machine Learning, NLP, [Your Field]"
+    title = "Dong Ho Lee"
+    subtitle = "M.S-Ph.D Student in Material Science @ Chungbuk national university  \nResearch interests: Machine Learning, NLP, [Your Field]"
     imageUrl = "/images/profile.jpg"
     imageWidth = 120
     imageHeight = 120
@@ -65,7 +65,7 @@ buildExpired = false
 
   [[params.socialIcons]]
     name = "github"
-    url = "https://github.com/yourusername"
+    url = "https://github.com/developledh"
   [[params.socialIcons]]
     name = "twitter"
     url = "https://twitter.com/yourusername"
@@ -74,7 +74,7 @@ buildExpired = false
     url = "https://scholar.google.com/citations?user=YOURID"
   [[params.socialIcons]]
     name = "email"
-    url = "mailto:your@email.com"
+    url = "mailto:dongho0724@naver.com"
   [[params.socialIcons]]
     name = "linkedin"
     url = "https://linkedin.com/in/yourusername"
