@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-Google Scholar 논문 자동 수집 스크립트 (scholarly + Tor)
-- Tor를 통해 GitHub Actions CI 환경의 IP 차단 우회
+Google Scholar 논문 자동 수집 스크립트 (scholarly + FreeProxies)
+- FreeProxies: scholarly 내장 무료 프록시 풀로 GitHub Actions CI 차단 우회
 - 환경변수:
     SCHOLAR_ID   : Google Scholar URL의 user= 뒤 값
     AUTHOR_NAME  : Bold 처리할 본인 이름 (예: DH Lee)
 - 로컬 실행: python scripts/fetch_publications.py
-- CI 실행: GitHub Actions에서 자동 실행 (Tor 사용)
+- CI 실행: GitHub Actions에서 자동 실행 (USE_FREE_PROXY=true)
 """
 
 import os
@@ -22,9 +22,9 @@ except ImportError:
     sys.exit(1)
 
 # ── 설정 ──────────────────────────────────────────────────────────────
-SCHOLAR_ID  = os.environ.get("SCHOLAR_ID", "YOUR_SCHOLAR_ID_HERE")
-AUTHOR_NAME = os.environ.get("AUTHOR_NAME", "Your Name")
-USE_TOR     = os.environ.get("USE_TOR", "false").lower() == "true"
+SCHOLAR_ID       = os.environ.get("SCHOLAR_ID", "YOUR_SCHOLAR_ID_HERE")
+AUTHOR_NAME      = os.environ.get("AUTHOR_NAME", "Your Name")
+USE_FREE_PROXY   = os.environ.get("USE_FREE_PROXY", "false").lower() == "true"
 OUTPUT_PATH = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
     "content", "publications", "_index.md"
@@ -33,23 +33,19 @@ OUTPUT_PATH = os.path.join(
 
 
 def setup_proxy():
-    """CI 환경에서는 Tor 프록시 설정."""
-    if not USE_TOR:
+    """CI 환경에서는 FreeProxies로 IP 우회."""
+    if not USE_FREE_PROXY:
         print("프록시 없이 직접 연결 (로컬 실행)")
         return True
     try:
-        print("Tor 프록시 설정 중...")
+        print("FreeProxies 설정 중 (작동 프록시 탐색, 1~2분 소요)...")
         pg = ProxyGenerator()
-        success = pg.Tor_Internal(tor_cmd="tor")
-        if success:
-            scholarly.use_proxy(pg)
-            print("Tor 프록시 설정 완료")
-            return True
-        else:
-            print("Tor 설정 실패")
-            return False
+        pg.FreeProxies()
+        scholarly.use_proxy(pg)
+        print("FreeProxies 설정 완료")
+        return True
     except Exception as e:
-        print(f"Tor 설정 오류: {e}")
+        print(f"FreeProxies 설정 오류: {e}")
         return False
 
 
@@ -67,7 +63,7 @@ def bold_author(authors: str, name: str) -> str:
             rf"{re.escape(last)},?\s+{re.escape(first)}",
             rf"{re.escape(fi)}\.\s+{re.escape(last)}",
         ]
-    return re.sub(f"({'|'.join(patterns)})", r"**\1**", authors, flags=re.IGNORECASE)
+    return re.sub(f"({'|'.join(patterns)})", r"**\\1**", authors, flags=re.IGNORECASE)
 
 
 def fetch_author(scholar_id: str):
@@ -82,7 +78,7 @@ def fetch_author(scholar_id: str):
         except Exception as e:
             print(f"  실패: {e}")
             if attempt < 3:
-                wait = 20 * attempt
+                wait = 30 * attempt
                 print(f"  {wait}초 후 재시도...")
                 time.sleep(wait)
     return None
@@ -140,7 +136,7 @@ showtoc: false
 
 ## Publications
 
-*Last updated: {updated} &nbsp;·&nbsp; [Google Scholar 프로필]({scholar_url})*
+*Last updated: {updated} &nbsp;·&nbsp; [Google Scholar]({scholar_url})*
 
 ---
 """
@@ -162,9 +158,9 @@ def main():
         print("SCHOLAR_ID 환경변수를 설정해 주세요.")
         sys.exit(1)
 
-    print(f"Scholar ID : {SCHOLAR_ID}")
-    print(f"Author Name: {AUTHOR_NAME}")
-    print(f"Tor 사용  : {USE_TOR}")
+    print(f"Scholar ID      : {SCHOLAR_ID}")
+    print(f"Author Name     : {AUTHOR_NAME}")
+    print(f"Free Proxy 사용 : {USE_FREE_PROXY}")
 
     if not setup_proxy():
         sys.exit(1)
