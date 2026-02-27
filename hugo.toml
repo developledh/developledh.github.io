@@ -16,7 +16,7 @@ buildExpired = false
 [params]
   env = "production"
   title = "Dong Ho Lee"
-  description = "M.S-PhD Integrated Student / Researcher at Chungbuk National University"
+  description = "M.S.-Ph.D. Integrated Student / Researcher at Chungbuk National University"
   keywords = ["Computational material science", "metal-halide", "Multiscale modeling"]
   author = "Dong Ho Lee"
   images = ["/images/profile.jpg"]
@@ -48,7 +48,7 @@ buildExpired = false
   [params.profileMode]
     enabled = true
     title = "Dong Ho Lee"
-    subtitle = "M.S-Ph.D Integrated Student in Material Science @ Chungbuk national university \n\n\nResearch interests: Computational material science, metal-halide, Multiscale modeling"
+    subtitle = "M.S.-Ph.D. Integrated Student in Material Science @ Chungbuk National University \n\nResearch interests: Computational material science, metal-halide, Multiscale modeling"
     imageUrl = "/images/profile.jpg"
     imageWidth = 120
     imageHeight = 120
