@@ -63,11 +63,12 @@ def bold_author(authors: str, name: str) -> str:
             rf"{re.escape(last)},?\s+{re.escape(first)}",
             rf"{re.escape(fi)}\.\s+{re.escape(last)}",
         ]
-    return re.sub(f"({'|'.join(patterns)})", r"**\\1**", authors, flags=re.IGNORECASE)
+    # NOTE: r"**\1**" — \1 is the back-reference (NOT \\1)
+    return re.sub(f"({'|'.join(patterns)})", r"**\1**", authors, flags=re.IGNORECASE)
 
 
 def fetch_author(scholar_id: str):
-    """Scholar 프로필 + 논문 목록 가져오기 (재시도 포함)."""
+    """Scholar 프로필 + 기본 논문 목록 가져오기 (재시도 포함)."""
     for attempt in range(1, 4):
         try:
             print(f"[{attempt}/3] Scholar 프로필 가져오는 중...")
@@ -82,6 +83,22 @@ def fetch_author(scholar_id: str):
                 print(f"  {wait}초 후 재시도...")
                 time.sleep(wait)
     return None
+
+
+def enrich_publications(pubs: list) -> list:
+    """각 논문의 상세 정보(저자, 저널 등)를 개별 fill로 보완."""
+    enriched = []
+    for i, pub in enumerate(pubs):
+        title = pub.get("bib", {}).get("title", "?")
+        print(f"  [{i+1}/{len(pubs)}] 상세 정보 가져오는 중: {title[:60]}...")
+        try:
+            full = scholarly.fill(pub)
+            enriched.append(full)
+            time.sleep(2)   # 연속 요청 사이 짧은 대기
+        except Exception as e:
+            print(f"    상세 정보 실패 (기본 데이터 사용): {e}")
+            enriched.append(pub)
+    return enriched
 
 
 def group_by_year(publications: list) -> dict:
@@ -170,7 +187,11 @@ def main():
         print("프로필 가져오기 실패. 기존 파일 유지.")
         sys.exit(1)
 
-    pubs_by_year = group_by_year(author.get("publications", []))
+    pubs = author.get("publications", [])
+    print(f"\n각 논문 상세 정보 수집 중 ({len(pubs)}편)...")
+    pubs = enrich_publications(pubs)
+
+    pubs_by_year = group_by_year(pubs)
     markdown     = generate_markdown(pubs_by_year, AUTHOR_NAME, SCHOLAR_ID)
 
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
