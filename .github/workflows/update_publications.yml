@@ -40,6 +40,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "변경사항 없음. 커밋 건너뜀."
           else
-            git commit -m "chore: auto-update publications from Google Scholar [skip ci]"
+            git commit -m "chore: auto-update publications from Google Scholar"
             git push
           fi
