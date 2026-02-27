@@ -11,7 +11,7 @@ permissions:
 jobs:
   update-publications:
     runs-on: ubuntu-latest
-    timeout-minutes: 10        # 10분 초과 시 자동 취소
+    timeout-minutes: 15        # Tor 포함하므로 15분으로 늘림
 
     steps:
       - name: Checkout repository
@@ -22,13 +22,21 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
-        run: pip install requests beautifulsoup4
+      - name: Install Tor
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y tor
+          sudo service tor start
+          sleep 8
+
+      - name: Install Python dependencies
+        run: pip install scholarly
 
       - name: Fetch publications from Google Scholar
         env:
           SCHOLAR_ID: ${{ secrets.SCHOLAR_ID }}
           AUTHOR_NAME: ${{ secrets.AUTHOR_NAME }}
+          USE_TOR: "true"
         run: python scripts/fetch_publications.py
 
       - name: Commit updated publications (변경된 경우에만)
