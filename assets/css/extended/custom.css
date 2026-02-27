@@ -2,6 +2,12 @@
    VOGUE COVER STYLE — Personal Research Homepage
    ============================================================ */
 
+/* ── Publications 저자 이름 폰트 크기 ───────────────────────── */
+.pub-authors {
+  font-size: 0.875em;   /* 본문 대비 약 12.5% 축소 */
+  color: inherit;
+}
+
 /* ── 공통 리셋 ───────────────────────────────────────────── */
 .profile {
   /* PaperMod 기본 .profile 래퍼 패딩 제거 */

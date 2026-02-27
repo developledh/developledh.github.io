@@ -132,7 +132,8 @@ def format_pub(pub: dict, author_name: str, scholar_id: str) -> str:
 
     parts = [title_md]
     if authors:
-        parts.append(authors)
+        # span으로 감싸서 CSS로 폰트 크기 조절 가능하게 함 (Hugo unsafe HTML 허용)
+        parts.append(f'<span class="pub-authors">{authors}</span>')
     if venue_year:
         parts.append(venue_year + cite_str)
     elif cite_str:
