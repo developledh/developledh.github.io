@@ -55,7 +55,7 @@ def fetch_author(scholar_id: str):
         try:
             author = scholarly.search_author_id(scholar_id)
             # sortby='pubdate' 로 최신순 정렬, 개별 논문 상세 fill 없음
-            author = scholarly.fill(author, sections=["publications"], sortby="pubdate")
+            author = scholarly.fill(author, sections=["publications"], sortby="year")
             return author
         except Exception as e:
             print(f"  시도 {attempt}/3 실패: {e}")
