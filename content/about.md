@@ -8,20 +8,20 @@ showtoc: false
 
 ## About Me
 
-I am a PhD student at the [Department of Computer Science](https://example.com), [Your University], advised by [Prof. Name](https://example.com).
+I am a M.S-Ph.D Integrated student at the Department of Material Science, Chugbuk national unierstiy, advised by Prof. Han Seul Kim (https://atomlab.co.kr).
 
-My research focuses on **[your research area]**, with particular interest in:
-- Topic 1
-- Topic 2
-- Topic 3
+My research focuses on Atomistic modeling/Simulation, with particular interest in:
+- Perovskite 
+- Metal-halide
+- Multi-functinal devices 
 
-Before my PhD, I received my B.S. in [Major] from [Undergraduate University] in [Year].
+Before my Ph.D, I received my B.S. in Advacned material engineering from Chungbuk National University in 2026.
 
 ---
 
 ## News
 
-- **[2024.09]** Started PhD program at [University].
+- **[2026.02]** Started PhD program at Chungbuk national university.
 - **[2024.06]** Paper accepted at [Conference Name].
 - **[2024.03]** Received [Scholarship/Award Name].
 
@@ -29,18 +29,18 @@ Before my PhD, I received my B.S. in [Major] from [Undergraduate University] in 
 
 ## Education
 
-**PhD in Computer Science** | [Year] - Present
-[Your University], [City, Country]
-Advisor: [Prof. Name]
+**M.S-Ph.D Integrated in Material Science** | 2026 - Present
+Chungbuk national university, Chungju, Repubilc of Korea
+Advisor: Prof. Han Seul Kim
 
-**B.S. in [Major]** | [Year] - [Year]
-[Undergraduate University], [City, Country]
-GPA: X.XX / 4.0
+**B.S. in Advanced material enginerring** | 2020 - 2026
+Chungbuk national university, Chungju, Repubilc of Korea
+GPA: 4.14 / 4.5
 
 ---
 
 ## Contact
 
-- Email: [your@email.com](mailto:your@email.com)
-- Office: [Room Number], [Building], [University]
-- GitHub: [yourusername](https://github.com/yourusername)
+- Email: dongho0724@naver.com, dh.lee@cbnu.ac.kr
+- Office: Room number 113, E8-1, Chungbuk national university
+- GitHub: [developledh](https://github.com/developledh)

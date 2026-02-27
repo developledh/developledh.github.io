@@ -48,7 +48,7 @@ buildExpired = false
   [params.profileMode]
     enabled = true
     title = "Dong Ho Lee"
-    subtitle = "M.S-Ph.D Student in Material Science @ Chungbuk national university  \nResearch interests: Machine Learning, NLP, [Your Field]"
+    subtitle = "M.S-Ph.D Integrated Student in Material Science @ Chungbuk national university \n\n\nResearch interests: Computational material science, metal-halide, Multiscale modeling"
     imageUrl = "/images/profile.jpg"
     imageWidth = 120
     imageHeight = 120
