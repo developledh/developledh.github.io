@@ -7,7 +7,7 @@ showtoc: false
 
 ## Publications
 
-*Last updated: February 2026 &nbsp;·&nbsp; [Google Scholar](https://scholar.google.com/citations?user=yu7_a7sAAAAJ&sortby=pubdate)*
+*Last updated: March 2026 &nbsp;·&nbsp; [Google Scholar](https://scholar.google.com/citations?user=yu7_a7sAAAAJ&sortby=pubdate)*
 
 ---
 
