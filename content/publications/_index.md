@@ -20,7 +20,7 @@ showtoc: false
 ---
 
 **[Electrical power generation from asymmetric greenhouse gas capture](https://pubs.rsc.org/en/content/articlehtml/2026/ee/d5ee06789h)**  
-<span class="pub-authors">Tae-gwang Yun and Yejin Lee and Joonchul Shin and **Dong Ho Lee** and Min Taek Hong and Seonghun Lee and Sang-Joon Kim and Hyun Ji Lee and Jiwon Lee and Gyeongrok Min and Seunghyun Weon and Minho Choi and Ho Won Jang and Han Seul Kim and Ji-Soo Jang</span>  
+<span class="pub-authors">Tae Gwang Yun and Yejin Lee and Joonchul Shin and **Dong Ho Lee** and Min Taek Hong and Seonghun Lee and Sang-Joon Kim and Hyun Ji Lee and Jiwon Lee and Gyeongrok Min and Seunghyun Weon and Minho Choi and Ho Won Jang and Han Seul Kim and Ji-Soo Jang</span>  
 *Energy & Environmental Science*, 2026
 
 ---
@@ -36,7 +36,7 @@ showtoc: false
 
 **[Wearable Humidity Sensor Using Cs3Cu2I5 Metal Halides with Hydroxyl Selective Phase Transition for Breath Monitoring](https://www.mdpi.com/2079-6374/15/5/311)**  
 <span class="pub-authors">Si Hyeok Yang and Lim Kyung Oh and **Dong Ho Lee** and Donghoon Gwak and Nara Song and Bowon Oh and Na Young Lee and Hongki Kim and Han Seul Kim and Jin Woo Choi</span>  
-*Biosensors*, 2025 · Cited by 1
+*Biosensors*, 2025 · Cited by 2
 
 ---
 
