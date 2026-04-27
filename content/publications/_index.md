@@ -15,7 +15,7 @@ showtoc: false
 
 **[Dynamic Control of Synaptic Plasticity by Competing Ferroelectric and Trap‐Assisted Switching in IGZO Transistors with Al2O3/HfO2 Dielectrics](https://advanced.onlinelibrary.wiley.com/doi/abs/10.1002/adfm.202513449)**  
 <span class="pub-authors">Ojun Kwon and **Dong Ho Lee** and Seyoung Oh and Jongwon Yoon and Hyo‐Bae Kim and Ji‐Hoon Ahn and Woojin Park and Han Seul Kim and Byungjin Cho</span>  
-*Advanced Functional Materials*, 2026 · Cited by 3
+*Advanced Functional Materials*, 2026 · Cited by 4
 
 ---
 
