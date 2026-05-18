@@ -13,6 +13,12 @@ showtoc: false
 
 ### 2026
 
+**[Amplified photocurrent in heterojunctions comprising nanorippled zinc oxide and perovskite-inspired Cs3Cu2I5](https://link.springer.com/article/10.1140/epjp/s13360-026-07711-8)**  
+<span class="pub-authors">Si Hyeok Yang and Lim Kyung Oh and Na Young Lee and **Dong Ho Lee** and Sang Min Choi and Bowon Oh and Yun Ji Park and Yunji Cho and Jaesel Ryu and Hongki Kim and Sang-Hyun Chin and Yeonjin Yi and Myungkwan Song and Han Seul Kim and Jin Woo Choi</span>  
+*The European Physical Journal Plus*, 2026
+
+---
+
 **[Dynamic Control of Synaptic Plasticity by Competing Ferroelectric and Trap‐Assisted Switching in IGZO Transistors with Al2O3/HfO2 Dielectrics](https://advanced.onlinelibrary.wiley.com/doi/abs/10.1002/adfm.202513449)**  
 <span class="pub-authors">Ojun Kwon and **Dong Ho Lee** and Seyoung Oh and Jongwon Yoon and Hyo‐Bae Kim and Ji‐Hoon Ahn and Woojin Park and Han Seul Kim and Byungjin Cho</span>  
 *Advanced Functional Materials*, 2026 · Cited by 4
@@ -42,6 +48,6 @@ showtoc: false
 
 **[Boosting the Performance of Alkaline Anion Exchange Membrane Water Electrolyzer with Vanadium‐Doped NiFe2O4](https://onlinelibrary.wiley.com/doi/abs/10.1002/smll.202410006)**  
 <span class="pub-authors">Minsol Kwon and Jun Seok Ha and **Dong Ho Lee** and Taehyun Kwon and Minseo Kim and Young‐Hun Jeong and Han Seul Kim and Alex Ditter and David A Shapiro and Young‐Sang Yu and Yoo Sei Park and Dongju Lee</span>  
-*Small*, 2025 · Cited by 14
+*Small*, 2025 · Cited by 15
 
 ---
