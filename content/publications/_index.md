@@ -42,12 +42,12 @@ showtoc: false
 
 **[Wearable Humidity Sensor Using Cs3Cu2I5 Metal Halides with Hydroxyl Selective Phase Transition for Breath Monitoring](https://www.mdpi.com/2079-6374/15/5/311)**  
 <span class="pub-authors">Si Hyeok Yang and Lim Kyung Oh and **Dong Ho Lee** and Donghoon Gwak and Nara Song and Bowon Oh and Na Young Lee and Hongki Kim and Han Seul Kim and Jin Woo Choi</span>  
-*Biosensors*, 2025 · Cited by 3
+*Biosensors*, 2025 · Cited by 4
 
 ---
 
 **[Boosting the Performance of Alkaline Anion Exchange Membrane Water Electrolyzer with Vanadium‐Doped NiFe2O4](https://onlinelibrary.wiley.com/doi/abs/10.1002/smll.202410006)**  
 <span class="pub-authors">Minsol Kwon and Jun Seok Ha and **Dong Ho Lee** and Taehyun Kwon and Minseo Kim and Young‐Hun Jeong and Han Seul Kim and Alex Ditter and David A Shapiro and Young‐Sang Yu and Yoo Sei Park and Dongju Lee</span>  
-*Small*, 2025 · Cited by 15
+*Small*, 2025 · Cited by 16
 
 ---
