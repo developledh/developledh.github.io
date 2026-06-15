@@ -7,7 +7,7 @@ showtoc: false
 
 ## Publications
 
-*Last updated: May 2026 &nbsp;·&nbsp; [Google Scholar](https://scholar.google.com/citations?user=yu7_a7sAAAAJ&sortby=pubdate)*
+*Last updated: June 2026 &nbsp;·&nbsp; [Google Scholar](https://scholar.google.com/citations?user=yu7_a7sAAAAJ&sortby=pubdate)*
 
 ---
 
@@ -33,7 +33,7 @@ showtoc: false
 
 **[High‐Precision Silicon Microgrooves via Metal‐Assisted Chemical Etching (MACE) Using Electrospun Nanofibers](https://advanced.onlinelibrary.wiley.com/doi/abs/10.1002/admi.202500578)**  
 <span class="pub-authors">Mun Jeong Choi and **Dong Ho Lee** and Han Seul Kim and Geon Hwee Kim</span>  
-*Advanced Materials Interfaces*, 2026 · Cited by 2
+*Advanced Materials Interfaces*, 2026 · Cited by 3
 
 ---
 
@@ -48,6 +48,6 @@ showtoc: false
 
 **[Boosting the Performance of Alkaline Anion Exchange Membrane Water Electrolyzer with Vanadium‐Doped NiFe2O4](https://onlinelibrary.wiley.com/doi/abs/10.1002/smll.202410006)**  
 <span class="pub-authors">Minsol Kwon and Jun Seok Ha and **Dong Ho Lee** and Taehyun Kwon and Minseo Kim and Young‐Hun Jeong and Han Seul Kim and Alex Ditter and David A Shapiro and Young‐Sang Yu and Yoo Sei Park and Dongju Lee</span>  
-*Small*, 2025 · Cited by 16
+*Small*, 2025 · Cited by 19
 
 ---
