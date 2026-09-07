@@ -7,7 +7,7 @@ showtoc: false
 
 ## Publications
 
-*Last updated: August 2026 &nbsp;·&nbsp; [Google Scholar](https://scholar.google.com/citations?user=yu7_a7sAAAAJ&sortby=pubdate)*
+*Last updated: September 2026 &nbsp;·&nbsp; [Google Scholar](https://scholar.google.com/citations?user=yu7_a7sAAAAJ&sortby=pubdate)*
 
 ---
 
@@ -46,8 +46,7 @@ showtoc: false
 
 ---
 
-**[Boosting the Performance of Alkaline Anion Exchange Membrane Water Electrolyzer with Vanadium‐Doped NiFe2O4](https://onlinelibrary.wiley.com/doi/abs/10.1002/smll.202410006)**  
-<span class="pub-authors">Minsol Kwon and Jun Seok Ha and **Dong Ho Lee** and Taehyun Kwon and Minseo Kim and Young‐Hun Jeong and Han Seul Kim and Alex Ditter and David A Shapiro and Young‐Sang Yu and Yoo Sei Park and Dongju Lee</span>  
-*Small*, 2025 · Cited by 21
+**[Boosting the Performance of Alkaline Anion Exchange Membrane Water Electrolyzer with Vanadium‐Doped NiFe2O4](https://scholar.google.com/citations?view_op=view_citation&citation_for_view=yu7_a7sAAAAJ:u5HHmVD_uO8C)**  
+2025 · Cited by 21
 
 ---
