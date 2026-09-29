@@ -17,8 +17,9 @@ from datetime import datetime
 
 try:
     from scholarly import scholarly, ProxyGenerator
-except ImportError:
-    print("설치 필요: pip install scholarly")
+except ImportError as e:
+    print(f"scholarly import 실패: {e}")
+    print('설치 필요: pip install scholarly "httpx<0.28" "bibtexparser<2"')
     sys.exit(1)
 
 # ── 설정 ──────────────────────────────────────────────────────────────

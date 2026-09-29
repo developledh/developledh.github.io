@@ -23,7 +23,8 @@ jobs:
           python-version: '3.11'
 
       - name: Install Python dependencies
-        run: pip install scholarly "httpx<0.28"
+        # bibtexparser 2.x는 scholarly가 쓰는 bibdatabase 모듈을 제거함 → 1.x 고정
+        run: pip install scholarly "httpx<0.28" "bibtexparser<2"
 
       - name: Fetch publications from Google Scholar
         env:

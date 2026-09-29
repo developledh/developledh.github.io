@@ -11,9 +11,8 @@ showtoc: false
 I am a M.S.-Ph.D. Integrated student at the Department of Material Science, Chungbuk National University, advised by Prof. Han Seul Kim (https://atomlab.co.kr).
 
 My research focuses on Atomistic modeling/Simulation, with particular interest in:
-- Perovskite
-- Metal-halide
-- Multi-functional devices
+- Perovskite/Metal-halide
+- Simulation of Multi-functional devices
 
 Before my Ph.D, I received my B.S. in Advanced Material Engineering from Chungbuk National University in 2026.
 
