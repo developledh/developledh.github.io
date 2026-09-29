@@ -50,22 +50,35 @@ def setup_proxy():
         return False
 
 
+def _name_variants(name: str) -> set:
+    """본인 이름의 표기 변형 집합 (정규화된 소문자). 예: 'Dong Ho Lee' →
+    dong ho lee / dh lee / d h lee / d lee / lee dh / lee dong ho"""
+    norm = lambda s: re.sub(r"[.\s]+", " ", s).strip().lower()
+    parts = name.strip().split()
+    variants = {name}
+    if len(parts) >= 2:
+        last, firsts = parts[-1], parts[:-1]
+        inits = "".join(p[0] for p in firsts)
+        variants |= {
+            f"{inits} {last}", f"{' '.join(inits)} {last}", f"{firsts[0][0]} {last}",
+            f"{last} {inits}", f"{last} {' '.join(firsts)}",
+        }
+    return {norm(v) for v in variants}
+
+
 def bold_author(authors: str, name: str) -> str:
-    """저자 목록에서 본인 이름 **Bold** 처리."""
+    """쉼표로 구분된 저자 목록에서 본인 이름과 일치하는 항목만 **Bold** 처리.
+    저자 단위로 비교하므로 'Na Young Lee, Dong Ho Lee'처럼 경계를 넘는 오매칭이 없다."""
     if not name or not authors:
         return authors
-    parts = name.strip().split()
-    patterns = [re.escape(name)]
-    if len(parts) >= 2:
-        last, first = parts[-1], parts[0]
-        fi = first[0]
-        patterns += [
-            rf"{re.escape(last)},?\s+{re.escape(fi)}\.?",
-            rf"{re.escape(last)},?\s+{re.escape(first)}",
-            rf"{re.escape(fi)}\.\s+{re.escape(last)}",
-        ]
-    # NOTE: r"**\1**" — \1 is the back-reference (NOT \\1)
-    return re.sub(f"({'|'.join(patterns)})", r"**\1**", authors, flags=re.IGNORECASE)
+    variants = _name_variants(name)
+    norm = lambda s: re.sub(r"[.\s]+", " ", s).strip().lower()
+    out = []
+    for a in (x.strip() for x in authors.split(",")):
+        if not a:
+            continue
+        out.append(f"**{a}**" if norm(a) in variants else a)
+    return ", ".join(out)
 
 
 def fetch_author(scholar_id: str):
@@ -100,10 +113,15 @@ def load_existing_entries(path: str) -> dict:
             continue
         title = (m_title.group(1) or m_title.group(2)).strip()
         m_auth  = re.search(r'<span class="pub-authors">(.*?)</span>', block, flags=re.S)
-        m_venue = re.search(r"^\*([^*\n]+)\*(?:,\s*\d{4})?", block, flags=re.M)
+        # 예: "*Small* 21 (7), 2410006, 2025 · Cited by 23"  →  venue="Small", volinfo="21 (7), 2410006"
+        m_venue = re.search(
+            r"^\*([^*\n]+)\*\s*(.*?)(?:,\s*\d{4})?(?:\s*·\s*Cited by\s*\d+)?\s*$",
+            block, flags=re.M,
+        )
         entries[title] = {
-            "author": m_auth.group(1).replace("**", "").strip() if m_auth else "",
-            "venue":  m_venue.group(1).strip() if m_venue else "",
+            "author":  m_auth.group(1).replace("**", "").strip() if m_auth else "",
+            "venue":   m_venue.group(1).strip() if m_venue else "",
+            "volinfo": m_venue.group(2).strip() if m_venue else "",
         }
     return entries
 
@@ -133,6 +151,8 @@ def enrich_publications(pubs: list, existing: dict) -> list:
                     pub["bib"]["author"] = prev["author"]
                 if prev["venue"]:
                     pub["bib"]["venue"] = prev["venue"]
+                if prev["volinfo"]:
+                    pub["bib"]["_volinfo"] = prev["volinfo"]
             else:
                 print("    기존 정보 없음 → 기본 데이터 사용")
             full = pub
@@ -149,11 +169,33 @@ def group_by_year(publications: list) -> dict:
     return groups
 
 
+def format_authors(authors: str, name: str) -> str:
+    """scholarly의 'A and B and C' 형식을 'A, B, C'로 바꾸고 본인 이름 Bold 처리."""
+    authors = ", ".join(a.strip() for a in re.split(r"\s+and\s+", authors) if a.strip())
+    return bold_author(authors, name)
+
+
+def format_volinfo(bib: dict) -> str:
+    """Google Scholar 표기와 같은 '21 (7), 2410006' 형식의 권/호/페이지 문자열."""
+    if bib.get("_volinfo"):            # 기존 파일에서 재사용한 경우
+        return bib["_volinfo"].strip()
+    vol   = str(bib.get("volume", "") or "").strip()
+    num   = str(bib.get("number", "") or "").strip()
+    pages = str(bib.get("pages", "") or "").strip()
+    s = vol
+    if num:
+        s = f"{s} ({num})".strip()
+    if pages:
+        s = f"{s}, {pages}" if s else pages
+    return s
+
+
 def format_pub(pub: dict, author_name: str, scholar_id: str) -> str:
     bib    = pub.get("bib", {})
     title  = bib.get("title", "Unknown Title").strip()
-    authors = bold_author(bib.get("author", ""), author_name)
+    authors = format_authors(bib.get("author", ""), author_name)
     venue  = (bib.get("venue") or bib.get("journal") or bib.get("booktitle") or "").strip()
+    volinfo = format_volinfo(bib)
     year   = str(bib.get("pub_year", "")).strip()
 
     pub_url    = pub.get("pub_url", "").strip()
@@ -168,7 +210,8 @@ def format_pub(pub: dict, author_name: str, scholar_id: str) -> str:
     cite_str = f" · Cited by {citedby}" if citedby else ""
 
     title_md   = f"**[{title}]({link})**" if link else f"**{title}**"
-    venue_year = ", ".join(filter(None, [f"*{venue}*" if venue else "", year]))
+    venue_md   = " ".join(filter(None, [f"*{venue}*" if venue else "", volinfo]))
+    venue_year = ", ".join(filter(None, [venue_md, year]))
 
     parts = [title_md]
     if authors:
