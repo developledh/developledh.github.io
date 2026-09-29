@@ -86,19 +86,58 @@ def fetch_author(scholar_id: str):
     return None
 
 
-def enrich_publications(pubs: list) -> list:
-    """각 논문의 상세 정보(저자, 저널 등)를 개별 fill로 보완."""
+def load_existing_entries(path: str) -> dict:
+    """기존 _index.md에서 제목 → {author, venue}를 읽어 fill 실패 시 대체 데이터로 사용."""
+    if not os.path.exists(path):
+        return {}
+    with open(path, encoding="utf-8") as f:
+        text = f.read()
+
+    entries: dict = {}
+    for block in re.split(r"\n---\n", text):
+        m_title = re.search(r"^\*\*(?:\[(.+?)\]\(.*?\)|(.+?))\*\*\s*$", block, flags=re.M)
+        if not m_title:
+            continue
+        title = (m_title.group(1) or m_title.group(2)).strip()
+        m_auth  = re.search(r'<span class="pub-authors">(.*?)</span>', block, flags=re.S)
+        m_venue = re.search(r"^\*([^*\n]+)\*(?:,\s*\d{4})?", block, flags=re.M)
+        entries[title] = {
+            "author": m_auth.group(1).replace("**", "").strip() if m_auth else "",
+            "venue":  m_venue.group(1).strip() if m_venue else "",
+        }
+    return entries
+
+
+def enrich_publications(pubs: list, existing: dict) -> list:
+    """각 논문의 상세 정보(저자, 저널 등)를 개별 fill로 보완.
+    fill이 실패하면 재시도하고, 끝내 실패하면 기존 파일의 저자/저널 정보를 재사용한다."""
     enriched = []
     for i, pub in enumerate(pubs):
         title = pub.get("bib", {}).get("title", "?")
         print(f"  [{i+1}/{len(pubs)}] 상세 정보 가져오는 중: {title[:60]}...")
-        try:
-            full = scholarly.fill(pub)
-            enriched.append(full)
-            time.sleep(2)   # 연속 요청 사이 짧은 대기
-        except Exception as e:
-            print(f"    상세 정보 실패 (기본 데이터 사용): {e}")
-            enriched.append(pub)
+        full = None
+        for attempt in range(1, 4):
+            try:
+                full = scholarly.fill(pub)
+                break
+            except Exception as e:
+                print(f"    [{attempt}/3] 상세 정보 실패: {e}")
+                if attempt < 3:
+                    time.sleep(10 * attempt)
+        if full is None:
+            prev = existing.get(title.strip())
+            if prev and (prev["author"] or prev["venue"]):
+                print("    기존 파일의 저자/저널 정보 재사용")
+                pub.setdefault("bib", {})
+                if prev["author"]:
+                    pub["bib"]["author"] = prev["author"]
+                if prev["venue"]:
+                    pub["bib"]["venue"] = prev["venue"]
+            else:
+                print("    기존 정보 없음 → 기본 데이터 사용")
+            full = pub
+        enriched.append(full)
+        time.sleep(2)   # 연속 요청 사이 짧은 대기
     return enriched
 
 
@@ -190,8 +229,9 @@ def main():
         sys.exit(1)
 
     pubs = author.get("publications", [])
-    print(f"\n각 논문 상세 정보 수집 중 ({len(pubs)}편)...")
-    pubs = enrich_publications(pubs)
+    existing = load_existing_entries(OUTPUT_PATH)
+    print(f"\n각 논문 상세 정보 수집 중 ({len(pubs)}편, 기존 항목 {len(existing)}개 로드)...")
+    pubs = enrich_publications(pubs, existing)
 
     pubs_by_year = group_by_year(pubs)
     markdown     = generate_markdown(pubs_by_year, AUTHOR_NAME, SCHOLAR_ID)

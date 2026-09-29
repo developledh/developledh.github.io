@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write           # 파일 커밋을 위해 필요
+  actions: write            # 커밋 후 배포 워크플로우 수동 트리거에 필요
 
 jobs:
   update-publications:
@@ -43,4 +44,9 @@ jobs:
           else
             git commit -m "chore: auto-update publications from Google Scholar"
             git push
+            # GITHUB_TOKEN으로 푸시하면 push 이벤트 워크플로우가 실행되지 않으므로 배포를 직접 트리거
+            gh workflow run deploy.yml --ref main
+            echo "배포 워크플로우 트리거됨"
           fi
+        env:
+          GH_TOKEN: ${{ github.token }}
