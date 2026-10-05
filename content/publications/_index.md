@@ -7,7 +7,7 @@ showtoc: false
 
 ## Publications
 
-*Last updated: September 2026 &nbsp;·&nbsp; [Google Scholar](https://scholar.google.com/citations?user=yu7_a7sAAAAJ&sortby=pubdate)*
+*Last updated: October 2026 &nbsp;·&nbsp; [Google Scholar](https://scholar.google.com/citations?user=yu7_a7sAAAAJ&sortby=pubdate)*
 
 ---
 
@@ -27,7 +27,7 @@ showtoc: false
 
 **[Dynamic Control of Synaptic Plasticity by Competing Ferroelectric and Trap‐Assisted Switching in IGZO Transistors with Al2O3/HfO2 Dielectrics](https://advanced.onlinelibrary.wiley.com/doi/abs/10.1002/adfm.202513449)**  
 <span class="pub-authors">Ojun Kwon, **Dong Ho Lee**, Seyoung Oh, Jongwon Yoon, Hyo‐Bae Kim, Ji‐Hoon Ahn, Woojin Park, Han Seul Kim, Byungjin Cho</span>  
-*Advanced Functional Materials* 36 (13), e13449, 2026 · Cited by 8
+*Advanced Functional Materials* 36 (13), e13449, 2026 · Cited by 9
 
 ---
 
@@ -48,6 +48,6 @@ showtoc: false
 
 **[Boosting the Performance of Alkaline Anion Exchange Membrane Water Electrolyzer with Vanadium‐Doped NiFe2O4](https://onlinelibrary.wiley.com/doi/abs/10.1002/smll.202410006)**  
 <span class="pub-authors">Minsol Kwon, Jun Seok Ha, **Dong Ho Lee**, Taehyun Kwon, Minseo Kim, Young‐Hun Jeong, Han Seul Kim, Alex Ditter, David A Shapiro, Young‐Sang Yu, Yoo Sei Park, Dongju Lee</span>  
-*Small* 21 (7), 2410006, 2025 · Cited by 23
+*Small* 21 (7), 2410006, 2025 · Cited by 24
 
 ---
